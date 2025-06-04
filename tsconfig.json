@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@core/*": ["src/core/*"],
+      "@common/*": ["src/common/*"],
+      "@auth/*": ["src/modules/auth/*"],
+      "@webauthn/*": ["src/modules/webauthn/*"],
+      "@votes-sessions/*": ["src/modules/votes-sessions/*"],
+      "@vote-options/*": ["src/modules/vote-options/*"],
+      "@vote-records/*": ["src/modules/vote-records/*"],
+      "@storage/*": ["src/modules/storage/*"],
+    }
+  }
+}

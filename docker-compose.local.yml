@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: myapp_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: voting
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - myapp_network
+
+  myapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    container_name: myapp
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
+    environment:
+      APP_NAME: "${APP_NAME}"
+      PORT: "${PORT}"
+      NODE_ENV: "${NODE_ENV}"
+      LOG_LEVEL: "${LOG_LEVEL}"
+      NO_COLOR: "${NO_COLOR}"
+      DATABASE_URL: "${DATABASE_URL}"
+      SWAGGER_USERNAME: "${SWAGGER_USERNAME}"
+      SWAGGER_PASSWORD: "${SWAGGER_PASSWORD}"
+      JWT_SECRET: "${JWT_SECRET}"
+      ACCESS_TOKEN_EXPIRES_IN: "${ACCESS_TOKEN_EXPIRES_IN}"
+      REFRESH_TOKEN_EXPIRES_IN: "${REFRESH_TOKEN_EXPIRES_IN}"
+      LIMIT: "${LIMIT}"
+      THROTTLE_LIMIT: "${THROTTLE_LIMIT}"
+      THROTTLE_TTL: "${THROTTLE_TTL}"
+      THROTTLE_BLOCK_DURATION: "${THROTTLE_BLOCK_DURATION}"
+    networks:
+      - myapp_network
+
+volumes:
+  postgres_data:
+
+networks:
+  myapp_network:
+    driver: bridge

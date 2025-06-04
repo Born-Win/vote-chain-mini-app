@@ -1,0 +1,373 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+:root {
+  --primary: #5a67d8;
+  --primary-light: #6670f0;
+  --accent: #f6ad55;
+  --text-light: #ffffff;
+  --text-dark: #2d3748;
+  --bg-start: #ece9e6;
+  --bg-end: #ffffff;
+  --gray: #718096;
+  --radius: 12px;
+  --transition: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-dark);
+}
+
+/* Floating accent blob */
+body::before {
+  content: '';
+  position: fixed;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: var(--accent);
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+.home-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+.home-btn:hover {
+  transform: scale(1.2);
+}
+.header-title {
+  color: var(--text-light);
+  font-weight: 800;
+  font-size: 1.75rem;
+}
+.spacer {
+  width: 1.5rem;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+.container {
+  width: 100%;
+}
+
+/* Section Titles */
+.votes-section {
+  margin-bottom: 2rem;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+/* Vote List (Flex) */
+.vote-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.75rem;
+  list-style: none;
+  padding: 0;
+}
+.vote-item {
+  flex: 0 0 calc(33.333% - 1.5rem);
+  margin: 0.75rem;
+  background: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  transition: transform var(--transition), background var(--transition);
+  cursor: pointer;
+}
+.vote-item:hover {
+  transform: translateY(-4px);
+  background: rgba(90, 103, 216, 0.05);
+}
+
+/* Vote Item Content */
+.vote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.vote-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+.vote-icon {
+  font-size: 1.25rem;
+  color: var(--primary);
+}
+.vote-desc {
+  color: var(--gray);
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+.vote-meta {
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  margin-top: 1rem;
+  display: none;
+}
+.empty-state p {
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+/* Responsive: 2 columns on tablets */
+@media (max-width: 1024px) {
+  .vote-item {
+    flex: 0 0 calc(50% - 1.5rem);
+  }
+}
+
+/* Responsive: 1 column on phones */
+@media (max-width: 600px) {
+  .vote-item {
+    flex: 0 0 100%;
+    margin: 0.5rem 0;
+  }
+  .content {
+    padding: 1rem;
+  }
+}
+/* Blockscout inline iframe container */
+#tx-explorer-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 640px;
+    height: 360px;
+    background: #fff;
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    display: none;                /* hidden by default */
+    overflow: hidden;
+    z-index: 1000;
+  }
+  
+  #tx-explorer-frame {
+    width: 100%;
+    height: calc(100% - 30px);    /* leave space for close button */
+    border: none;
+  }
+  
+  /* Close button in the top‐right of the iframe container */
+  #tx-close-btn {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #555;
+    cursor: pointer;
+    transition: color var(--transition);
+  }
+  #tx-close-btn:hover {
+    color: #000;
+  }
+  
+  /* Magnifying‐glass button styling */
+  .tx-view-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform var(--transition), color var(--transition);
+    margin-top: 0.5rem;
+  }
+  .tx-view-btn:hover {
+    transform: scale(1.1);
+    color: var(--primary-light);
+  }
+  #tx-explorer-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* =====================================================
+   1) Modal Overlay & Content
+   ===================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+  
+  .modal-content {
+    background: #ffffff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .transaction-data {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover {
+    color: #000;
+  }
+  
+  .tx-heading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #2d3748;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+  }
+  
+  .tx-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .tx-row:last-of-type {
+    border-bottom: none;
+  }
+  
+  /* Label (left side) */
+  .tx-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4a5568;
+  }
+  
+  /* Value (right side) */
+  .tx-value {
+    text-align: right;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: #2d3748;
+    max-width: 420px;
+    word-break: break-word;
+  }
+  
+  /* “Success” badge style */
+  .success-badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    background: #48bb78;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  /* Separator “|” */
+  .tx-separator {
+    margin: 0 0.5rem;
+    color: #cbd5e0;
+  }
+  
+  /* =====================================================
+     3) Progress Bar (“Gas usage & limit”) 
+     ===================================================== */
+  .progress-bar {
+    display: inline-block;
+    width: 80px;
+    height: 6px;
+    background: #edf2f7;
+    border-radius: 3px;
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 0 0.5rem;
+  }
+  
+  .progress-filled {
+    display: block;
+    width: 0%;             /* will be updated by JS */
+    height: 100%;
+    background: #48bb78;
+    transition: width 0.3s ease;
+  }
+  
+  /* =====================================================
+     4) Responsive 
+     (stack label/value on small screens)
+     ===================================================== */
+  @media (max-width: 600px) {
+    .tx-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    .tx-value {
+      text-align: left;
+    }
+  }
+  

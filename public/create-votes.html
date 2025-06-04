@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Voting</title>
+  <!-- Google Font for a more upscale vibe -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/create-votes.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script defer src="/js/create-vote.js"></script>
+</head>
+<body>
+  <header class="header">
+    <button id="home-btn" class="home-btn" aria-label="Home">🏠</button>
+    <h1 class="header-title">Create Voting</h1>
+    <!-- balance flex -->
+    <div class="spacer"></div>
+  </header>
+
+  <main class="content">
+    <div class="form-container">
+      <form id="create-vote-form">
+        <div class="form-group">
+          <label for="vote-topic">Topic</label>
+          <input type="text" id="vote-topic" name="topic" required />
+        </div>
+
+        <div class="form-group">
+          <label for="vote-description">Description</label>
+          <textarea id="vote-description" name="description" rows="4" required></textarea>
+        </div>
+
+        <div id="options-wrapper">
+          <div class="form-group option-group">
+            <input class="option-input" type="text" name="options[]" placeholder="Option 1" required />
+          </div>
+        </div>
+
+        <button type="button" id="add-option" class="add-option-btn">➕ Add Option</button>
+
+        <div class="form-group">
+          <label for="vote-deadline">Deadline</label>
+          <input type="date" id="vote-deadline" name="deadline" required />
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Votes</title>
+    <!-- Google Font & Font Awesome -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/view-votes.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/view-vote.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <button id="home-btn" class="home-btn" aria-label="Home">🏠</button>
+      <h1 class="header-title">My Votes</h1>
+      <div class="spacer"></div>
+    </header>
+
+    <main class="content">
+      <div class="container">
+        <section class="votes-section">
+          <h2 class="section-title">Created Votes</h2>
+          <ul id="created-vote-list" class="vote-list"></ul>
+          <div id="created-empty" class="empty-state">
+            <p>No created votes yet.</p>
+          </div>
+        </section>
+
+        <section class="votes-section">
+          <h2 class="section-title">Participating Votes</h2>
+          <ul id="participating-vote-list" class="vote-list"></ul>
+        </div> 
+          <div id="tx-modal" class="modal-overlay" style="display: none">
+            <div class="modal-content">
+              <button id="tx-modal-close" class="modal-close">&times;</button>
+
+              <div class="transaction-data">
+                <h2 class="tx-heading">Transaction Details</h2>
+
+                <!-- Transaction hash -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-hashtag"></i>
+                    Transaction hash
+                  </div>
+                  <div class="tx-value" id="tx-hash"></div>
+                </div>
+
+                <!-- Status -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-toggle-on"></i>
+                    Status
+                  </div>
+                  <div class="tx-value" id="tx-status"></div>
+                </div>
+
+                <!-- Block & confirmations -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-cubes"></i>
+                    Block
+                  </div>
+                  <div class="tx-value" id="tx-block"></div>
+                </div>
+
+                <!-- Timestamp (relative + full) -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-clock"></i>
+                    Timestamp
+                  </div>
+                  <div class="tx-value" id="tx-timestamp"></div>
+                </div>
+
+                <!-- From address -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-arrow-circle-right"></i>
+                    From
+                  </div>
+                  <div class="tx-value" id="tx-from"></div>
+                </div>
+
+                <!-- To address -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-arrow-circle-left"></i>
+                    To
+                  </div>
+                  <div class="tx-value" id="tx-to"></div>
+                </div>
+
+                <!-- Transaction fee (ETH + USD) -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    Transaction fee
+                  </div>
+                  <div class="tx-value" id="tx-fee"></div>
+                </div>
+
+                <!-- Gas price (ETH + Gwei) -->
+                <div class="tx-row">
+                  <div class="tx-label">
+                    <i class="fas fa-gas-pump"></i>
+                    Gas price
+                  </div>
+                  <div class="tx-value" id="tx-gas-price"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="participating-empty" class="empty-state">
+            <p>No participating votes yet.</p>
+          </div>
+          <!-- Transaction Detail Modal -->
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

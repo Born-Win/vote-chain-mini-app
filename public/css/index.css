@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+:root {
+  --primary: #5a67d8;
+  --primary-light: #6670f0;
+  --accent: #f6ad55;
+  --text-light: #ffffff;
+  --bg-start: #f0f4f8;
+  --bg-end: #ffffff;
+  --gray: #718096;
+  --radius: 12px;
+  --transition: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  min-height: 100vh;
+  color: #2d3748;
+  position: relative;
+}
+
+/* floating accent blob */
+body::before {
+  content: '';
+  position: fixed;
+  bottom: -150px; left: -150px;
+  width: 300px; height: 300px;
+  background: var(--accent);
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.spacer {
+  width: 1.5rem;
+}
+.greeting {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+.btn-burger {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+.btn-burger:hover {
+  transform: scale(1.2);
+}
+.dropdown-menu {
+    width: 220px;
+  position: absolute;
+  top: 55px;
+  right: 2rem;
+  background: var(--text-light);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+.dropdown-menu .side-btn {
+    width: 100%;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #2d3748;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.dropdown-menu .side-btn:hover {
+  background: var(--bg-start);
+}
+
+.content {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 100%;
+  /* max-width: 960px; */
+}
+
+section {
+  margin-bottom: 2rem;
+}
+section h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Vote Lists */
+.vote-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.75rem;
+  list-style: none;
+}
+.recent-votes-title {
+    display: none;
+}
+.vote-item {
+  flex: 0 0 calc(33.333% - 1.5rem);
+  margin: 0.75rem;
+  background: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1rem;
+  transition: transform var(--transition), background var(--transition);
+  cursor: pointer;
+}
+.vote-item:hover {
+  transform: translateY(-4px);
+  background: rgba(90,103,216,0.05);
+}
+
+/* Active vote specifics */
+.vote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.vote-header h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+.vote-header i {
+  color: var(--primary);
+}
+.vote-desc {
+  margin: 0.5rem 0;
+  color: var(--gray);
+}
+.vote-deadline, .vote-id {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.vote-id {
+  margin-top: 5px;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  margin-top: 2rem;
+}
+.empty-state p {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-bottom: 1rem;
+}
+.primary-btn {
+  background: var(--primary);
+  color: var(--text-light);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+.primary-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .vote-item {
+    flex: 0 0 calc(50% - 1.5rem);
+  }
+}
+@media (max-width: 600px) {
+  .header { padding: 0.75rem 1rem; }
+  .greeting { font-size: 1.25rem; }
+  .btn-burger { font-size: 1.25rem; }
+  .container { padding: 0 1rem; }
+  .vote-item {
+    flex: 0 0 100%;
+    margin: 0.5rem 0;
+  }
+}
