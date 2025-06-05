@@ -1,4 +1,3 @@
-// script-create.js
 $(document).ready(function() {
   $('#home-btn').click(() => window.location.href = '/');
 
@@ -14,7 +13,6 @@ $(document).ready(function() {
 
   $('.submit-btn').on('click', (e) => {
     e.preventDefault();
-    // const 
 
     const topic = $('#vote-topic').val();
 
@@ -49,20 +47,12 @@ $(document).ready(function() {
 
     if (!deadline) return alert('Need to specify deadline');
 
-    // if (new Date(deadline) < new Date()) {
-    //   console.log()
-    // }
-    console.log('form');
-
     const payload = {
       title: topic,
       description,
       ends_at: deadline,
       options
     }
-
-    console.log(payload)
-
 
     return $.ajax({
       url: `/api/v1/vote-sessions`,
@@ -83,18 +73,4 @@ $(document).ready(function() {
     })
     .fail(() => { });
    });
-
-  // $('#create-vote-form').on('submit', function(e) {
-  //   e.preventDefault();
-  //   const data = $(this).serialize();
-  //   $.post('/api/votes', data)
-  //     .done(response => {
-  //       alert('Vote created successfully!');
-  //       window.location.href = '/my-votes';
-  //     })
-  //     .fail(err => {
-  //       console.error(err);
-  //       alert('Failed to create vote.');
-  //     });
-  // });
 });

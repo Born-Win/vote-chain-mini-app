@@ -1,4 +1,3 @@
-// script-create.js
 $(document).ready(function () {
   $('#home-btn').click(() => window.location.href = '/');
 
@@ -18,8 +17,6 @@ $(document).ready(function () {
     if (!id) return;
     loadVote(id)
       .done(data => {
-        console.log(data);
-
         $('.find-vote').hide();
         $('.form-container').show();
 
@@ -69,8 +66,8 @@ $(document).ready(function () {
       data: payload,
     })
     .done(data => {
-      console.log(data)
       alert('Thanks for voting');
+
       $('.find-vote').show();
       $('.form-container').hide();
   

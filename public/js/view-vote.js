@@ -11,7 +11,6 @@ $(document).ready(function () {
             }
         })
             .done(data => {
-                console.log(data);
                 renderActiveVotes(data.data.created, $('#created-vote-list'));
                 renderActiveVotes(data.data.participated, $('#participating-vote-list'));
             })
@@ -35,7 +34,7 @@ $(document).ready(function () {
                 <p class="vote-deadline">Deadline: ${vote.ends_at}</p>
                 <p class="vote-id">id: ${vote.id}</p>
                 ${vote.tx_hash ?
-                    `<button class="tx-view-btn" title="View on Blockscout">
+                    `<button class="tx-view-btn" data-hash="${vote.tx_hash}" title="View on Blockscout">
                   <i class="fas fa-search"></i>
                 </button>` : ''
                 }
@@ -46,7 +45,7 @@ $(document).ready(function () {
 
     function loadTransaction() {
         $('#participating-vote-list').on('click', '.tx-view-btn', function () {
-            const txHash = '0x49eca414c6b71afbd7ceccd53d731b850c23f2bf726acbbc7fde2e6b13a202f8';
+            const txHash = $(this).attr('data-hash');
 
             if (!txHash) {
                 alert('No transaction hash available for this vote.');
@@ -85,7 +84,6 @@ $(document).ready(function () {
             $('#tx-modal').hide();
         })
     }
-
 
     loadTransaction();
     loadRecentVotes();

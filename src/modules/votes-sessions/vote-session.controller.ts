@@ -1,4 +1,3 @@
-import { createReadStream } from 'fs';
 import { join } from 'path';
 
 import { Response } from 'express';
@@ -7,19 +6,11 @@ import {
   Controller,
   Post,
   Body,
-  HttpCode,
-  HttpStatus,
-  ClassSerializerInterceptor,
-  UseInterceptors,
-  Inject,
   UseGuards,
   Get,
-  UnauthorizedException,
   Res,
   Headers,
-  Param,
   Query,
-  StreamableFile,
 } from '@nestjs/common';
 
 import { ApiAuthGuard } from '@common/guards/api-auth.guard';
@@ -27,8 +18,6 @@ import { ApiAuthGuard } from '@common/guards/api-auth.guard';
 import { VoteSessionService } from './vote-session.service';
 
 @Controller('vote-sessions')
-// @ApiTags('vote')
-// @UseInterceptors(ClassSerializerInterceptor)
 export class VoteSessionController {
   constructor(private readonly voteSessionService: VoteSessionService) {}
 

@@ -1,5 +1,3 @@
-import { Response } from 'express';
-
 import { Controller, Post, Body, UseGuards, Headers } from '@nestjs/common';
 
 import { ApiAuthGuard } from '@common/guards/api-auth.guard';

@@ -37,7 +37,6 @@ export class VoteSessionService {
         participated: sessions,
       };
     } catch (err) {
-      console.log(err);
       throw err;
     }
   }

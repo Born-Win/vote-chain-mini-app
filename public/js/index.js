@@ -2,16 +2,6 @@ $(document).ready(async function () {
   const tg = window.Telegram.WebApp;
   tg.ready();
 
-  // Greeting
-  // const user = tg.initDataUnsafe.user;
-  // $('#greeting').text(`Hello, ${user.first_name}!`);
-
-  // // Burger toggle and dropdown
-  // $('#burger-menu').on('click', function () {
-  //   $(this).toggleClass('is-active');
-  //   $('#dropdown-menu').slideToggle(200);
-  // });
-
   $('#burger-menu').on('click', function () {
     const $btn = $(this);
     const $menu = $('#dropdown-menu');
@@ -19,12 +9,9 @@ $(document).ready(async function () {
     $menu.slideToggle(200, function () {
     });
 
-    // меняем иконку
     $btn.find('i').toggleClass('fa-bars fa-times');
   });
 
-  // // Menu actions
-  // $('#btn-my-votes').click(() => window.location.href = '/my-votes');
   $('#btn-create-vote, #btn-first-vote').click(() => window.location.href = '/api/v1/vote-sessions/create');
   $('#btn-participate-vote').click(() => window.location.href = '/api/v1/vote-sessions/participate');
   $('#btn-my-votes').click(() => window.location.href = '/api/v1/vote-sessions/myvotes');
@@ -40,13 +27,9 @@ $(document).ready(async function () {
       }
     })
       .done(data => {
-        console.log(data)
         if (data.data.length) {
 
           $('#vote-list').empty();
-          // data.forEach(vote => $('#vote-list').append(
-          //   `<li class="vote-item"><h3>${vote.title}</h3><p>Status: ${vote.status}</p></li>`
-          // ));
           $('#empty-state').hide();
           $('.recent-votes-title').show();
 
@@ -80,32 +63,11 @@ $(document).ready(async function () {
     });
   }
 
-
-
-  // function b64ToBuf(b64) {
-  //   const bin = atob(b64);
-  //   const arr = new Uint8Array(bin.length);
-  //   for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-  //   return arr.buffer;
-  // }
   function loadOptions() {
     $.get('/api/v1/webauthn/register/options').done(async (data) => {
-      // console.log(data);
-
-      // publicKey.challenge = b64ToBuf(publicKey.challenge);
-      // publicKey.user.id = b64ToBuf(publicKey.user.id);
-      // data.excludeCredentials = publicKey.excludeCredentials.map(c => ({
-      // //   ...c,
-      // //   id: b64ToBuf(c.id),
-      // }));
-
-
-      // console.log(data.data)
-      // const result = await navigator.credentials.create({ publicKey: data.data });
-      // console.log(result);
       localStorage.setItem('userPublicKey', data.data.publicKey);
     })
-      .then( /* отправка результата на /register/verify */)
+      .then()
       .catch(err => console.log(err));
   }
 
@@ -116,8 +78,4 @@ $(document).ready(async function () {
   }
 
   loadRecentVotes(publicKey);
-
-
-  // $('#btn-first-vote').click(() => window.location.href = '/create-vote');
-  // loadRecentVotes();
 });
