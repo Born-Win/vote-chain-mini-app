@@ -5,10 +5,14 @@ import { Injectable } from '@nestjs/common';
 import { getPublicKeyFingerprint } from '@common/utils';
 
 import { VoteRecordRepository } from './vote-record.repository';
+import { VoteOptionRepository } from '@vote-options/vote-option.repository';
 
 @Injectable()
 export class VoteRecordService {
-  constructor(private readonly voteRecordRepository: VoteRecordRepository) {}
+  constructor(
+    private readonly voteRecordRepository: VoteRecordRepository,
+    private readonly voteOptionRepository: VoteOptionRepository
+  ) {}
 
   createRecord(publicKey: string, data: any) {
     const publicKeyFp = getPublicKeyFingerprint(publicKey);
@@ -24,6 +28,8 @@ export class VoteRecordService {
     };
 
     this.voteRecordRepository.createOne(record);
+
+    this.voteOptionRepository.increaseCount(data.option_id);
 
     return record.tx_hash;
   }

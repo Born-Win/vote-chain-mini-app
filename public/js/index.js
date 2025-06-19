@@ -2,6 +2,8 @@ $(document).ready(async function () {
   const tg = window.Telegram.WebApp;
   tg.ready();
 
+  localStorage.removeItem('sessionId');
+
   $('#burger-menu').on('click', function () {
     const $btn = $(this);
     const $menu = $('#dropdown-menu');
@@ -60,6 +62,17 @@ $(document).ready(async function () {
               <p class="vote-id">id: ${vote.id}</p>
             </li>
           `);
+    });
+
+    clickSession();
+  }
+
+  function clickSession() {
+    $('.vote-item').click(function() {
+      const voteIdText = $(this).find('.vote-id').text();
+      const voteId = voteIdText.replace('id:', '').trim();
+      localStorage.setItem('sessionId', voteId);
+      window.location.href = '/api/v1/vote-sessions/one'
     });
   }
 

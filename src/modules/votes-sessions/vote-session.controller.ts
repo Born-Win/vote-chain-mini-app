@@ -65,4 +65,17 @@ export class VoteSessionController {
       dotfiles: 'allow',
     });
   }
+
+  @Get('one')
+  getVotePage(@Res() res: Response) {
+    res.sendFile('vote-results.html', {
+      root: join(__dirname, '../../../', 'public'),
+      dotfiles: 'allow',
+    });
+  }
+
+  @Get(':id')
+  getVoteResults() {
+    return {};
+  }
 }

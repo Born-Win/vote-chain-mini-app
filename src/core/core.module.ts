@@ -32,7 +32,9 @@ import {
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'public'),
       serveRoot: '/',
-      exclude: ['/api*'],
+      serveStaticOptions: {
+        dotfiles: 'allow',     // <— allow files/folders starting with “.”
+      },
     }),
   ],
   providers: [

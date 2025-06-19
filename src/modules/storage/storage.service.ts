@@ -16,7 +16,7 @@ export class StorageService {
           '97dfa4e300c1bd649af8b71a9f5517c92a42941e388074d2c3b0c7a801c38a39',
         created_at: new Date().toISOString(),
         starts_at: new Date().toISOString(),
-        ends_at: new Date(Date.now() + 36000).toISOString(),
+        ends_at: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
         status: 'active',
       },
     ],
@@ -26,7 +26,7 @@ export class StorageService {
         session_id: '295ed43a-9e36-45b8-8cd5-eb7b339ac036',
         option_index: 1,
         label: 'OptionA',
-        vote_count: 0,
+        vote_count: 1,
       },
       {
         id: '654321',

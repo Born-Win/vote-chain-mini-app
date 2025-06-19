@@ -6,9 +6,10 @@ import { VoteRecordRepository } from '@vote-records/vote-record.repository';
 import { VoteRecordService } from '@vote-records/vote-record.service';
 
 import { UserModule } from '../users/user.module';
+import { VoteOptionModule } from '@vote-options/vote-option.module';
 
 @Module({
-  imports: [StorageModule, UserModule],
+  imports: [StorageModule, UserModule, VoteOptionModule],
   controllers: [VoteRecordController],
   providers: [VoteRecordService, VoteRecordRepository],
   exports: [VoteRecordRepository],

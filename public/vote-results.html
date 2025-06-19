@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vote Result</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/view-result.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/js/vote-results.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <button id="home-btn" class="home-btn" aria-label="Home">🏠</button>
+      <h1 class="header-title">Vote Results</h1>
+      <div class="spacer"></div>
+    </header>
+
+    <main class="content">
+      <div class="result-container">
+        <!-- Vote Info -->
+        <section class="vote-info">
+          <h2 class="vote-title" id="vote-title"></h2>
+          <p class="vote-desc" id="vote-desc"></p>
+          <p class="vote-deadline" id="vote-deadline"></p>
+        </section>
+
+        <div id="horizontal-chart">
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

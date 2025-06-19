@@ -19,4 +19,10 @@ export class VoteOptionRepository {
       this.storage.set('vote_options', optionData);
     }
   }
+
+  increaseCount(id: string) {
+    const data = this.storage.get('vote_options');
+    const option = data.find((d: any) => d.id === id);
+    option.vote_count += 1;
+  }
 }

@@ -13,6 +13,7 @@ $(document).ready(function () {
             .done(data => {
                 renderActiveVotes(data.data.created, $('#created-vote-list'));
                 renderActiveVotes(data.data.participated, $('#participating-vote-list'));
+                clickSession();
             })
             .fail(() => { $('#vote-list, #empty-state').toggle(); });
     }
@@ -45,7 +46,7 @@ $(document).ready(function () {
 
     function loadTransaction() {
         $('#participating-vote-list').on('click', '.tx-view-btn', function () {
-            const txHash = $(this).attr('data-hash');
+            const txHash = '0x49eca414c6b71afbd7ceccd53d731b850c23f2bf726acbbc7fde2e6b13a202f8';
 
             if (!txHash) {
                 alert('No transaction hash available for this vote.');
@@ -74,7 +75,7 @@ $(document).ready(function () {
                     const txGasPriceUsd = (Number(data.gas_price) * Number(data.historic_exchange_rate)).toFixed(6);
                     $('#tx-fee').text(`0.000${Number(data.transaction_burnt_fee).toFixed(5)} ETH ${txFeeUsd} USD`);
                     $('#tx-gas-price').text(`0.0000000${Number(data.gas_price).toFixed(5)} ETH ${txGasPriceUsd} USD`);
-                    
+
                     $('.modal-overlay').show()
                 })
                 .fail(() => { alert('Transaction not found') });
@@ -83,6 +84,18 @@ $(document).ready(function () {
         $('#tx-modal-close').on('click', () => {
             $('#tx-modal').hide();
         })
+    }
+
+    function clickSession() {
+        $('.vote-item').click(function (e) {
+            if ($(e.target).closest('.tx-view-btn').length) {
+                return;
+            }
+            const voteIdText = $(this).find('.vote-id').text();
+            const voteId = voteIdText.replace('id:', '').trim();
+            localStorage.setItem('sessionId', voteId);
+            window.location.href = '/api/v1/vote-sessions/one'
+        });
     }
 
     loadTransaction();
